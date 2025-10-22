@@ -21,14 +21,18 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from inventory_app.auth_views import RegisterView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('inventory_app.urls')),
 
-    # ✅ JWT Authentication endpoints
+    # 🔐 Authentication endpoints
+    path('api/register/', RegisterView.as_view(), name='register'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
+
 
 
 
